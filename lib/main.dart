@@ -1,7 +1,6 @@
-
-import 'package:bloc/bloc.dart';
 import 'package:bloc_state_management/bloc/counter/counter_bloc.dart';
-import 'package:bloc_state_management/ui/counter_screen.dart';
+import 'package:bloc_state_management/bloc/slider/slider_bloc.dart';
+import 'package:bloc_state_management/ui/slider_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,17 +14,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_)=>CounterBloc(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: const CounterScreen(),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => CounterBloc(),
+          ),
+          BlocProvider(
+            create: (_) => SliderBloc(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          // home: const CounterScreen(),
+          home: const SliderScreen(),
+        ));
   }
 }
