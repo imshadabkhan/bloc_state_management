@@ -4,7 +4,7 @@ import 'package:bloc_state_management/bloc/counter/counter_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterScreen extends StatelessWidget {
+class CounterScreen extends StatelessWidget{
   const CounterScreen({super.key});
   @override
   Widget build(BuildContext context) {
@@ -41,10 +41,8 @@ class CounterScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-
+                    onPressed: (){
                       context.read<CounterBloc>().add(DecrementEvent());
-
                     },
                     child: Text('Decrement'),
                   ),
