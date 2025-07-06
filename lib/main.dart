@@ -1,4 +1,4 @@
-import 'package:bloc_state_management/bloc/counter/counter_bloc.dart';
+
 import 'package:bloc_state_management/bloc/slider/slider_bloc.dart';
 import 'package:bloc_state_management/ui/slider_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +15,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (_) => CounterBloc(),
-          ),
-          BlocProvider(
-            create: (_) => SliderBloc(),
-          ),
-        ],
+
+        providers: [],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
