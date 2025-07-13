@@ -1,5 +1,9 @@
 
+import 'package:bloc_state_management/bloc/counter/counter_bloc.dart';
+import 'package:bloc_state_management/bloc/counter/counter_event.dart';
+import 'package:bloc_state_management/bloc/counter/counter_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class CounterScreen extends StatelessWidget{
@@ -16,9 +20,12 @@ class CounterScreen extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(
-              child: Text("1"),
-            ),
+            BlocBuilder<CounterBloc,CounterStates>(builder:(context,state){
+              return  Center(
+              child: Text(state.counter.toString()),
+      );
+      } ),
+
             SizedBox(
               height: 30,
             ),
@@ -27,7 +34,7 @@ class CounterScreen extends StatelessWidget{
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-
+context.read<CounterBloc>().add(IncrementCounter());
                     },
                     child: Text('Increment'),
                   ),
@@ -38,7 +45,7 @@ class CounterScreen extends StatelessWidget{
                 Expanded(
                   child: ElevatedButton(
                     onPressed: (){
-
+context.read<CounterBloc>().add(DecrementCounter());
                     },
                     child: Text('Decrement'),
                   ),

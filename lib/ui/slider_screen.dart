@@ -1,9 +1,4 @@
-import 'package:bloc_state_management/bloc/slider/slider_bloc.dart';
-import 'package:bloc_state_management/bloc/slider/slider_events.dart';
-import 'package:bloc_state_management/bloc/slider/slider_state.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SliderScreen extends StatelessWidget {
   const SliderScreen({super.key});
@@ -30,56 +25,31 @@ class SliderScreen extends StatelessWidget {
                   'Notification',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                 ),
-                BlocBuilder<SliderBloc, SliderState>(
-                  buildWhen: (previous,current)=>previous.value!=current.value,
-                  builder: (context, state) {
-                    if (kDebugMode) {
-                      print("I am Switch");
-                    }
-                    return Switch(
-                        value: state.value,
-                        onChanged: (newValue) {
-                          context
-                              .read<SliderBloc>()
-                              .add(EnableOrDisableNotificationEvent());
-                        });
-                  },
-                ),
+        Switch(
+            value: false,
+            onChanged: (newValue) {
+
+            }),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            BlocBuilder<SliderBloc, SliderState>(
-
-              builder: (context, state) {
-                if (kDebugMode) {
-                  print("i am container");
-                }
-
-                return Container(
-                  height: 200,
-                  width: double.infinity,
-                  color:
-                      Colors.red.withAlpha((state.sliderValue * 255).toInt()),
-                );
-              },
-            ),
+        Container(
+          height: 200,
+          width: double.infinity,
+          color:
+          Colors.red.withAlpha((0.5 * 255).toInt()),
+        ),
             const SizedBox(
               height: 20,
             ),
-            BlocBuilder<SliderBloc, SliderState>(
+        Slider(
 
-              builder: (context, state) {
+            value: 0,
+            onChanged: (value) {
 
-
-                return Slider(
-
-                  value: state.sliderValue,
-                  onChanged: (value) {
-                    context.read<SliderBloc>().add(DynamicSliderEvent(value));
-                  });},
-            ),
+            }),
           ],
         ),
       ),
